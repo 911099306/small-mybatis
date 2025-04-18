@@ -1,0 +1,24 @@
+package org.serendipity.binding;
+
+import java.lang.reflect.Proxy;
+import java.util.Map;
+
+/**
+ * @author Serendipity
+ * @description 映射器代理工厂
+ * @date 2025-04-18 13:56
+ **/
+public class MapperProxyFactory<T> {
+
+    private final Class<T> mapperInterface;
+
+    public MapperProxyFactory(Class<T> mapperInterface) {
+        this.mapperInterface = mapperInterface;
+    }
+
+    @SuppressWarnings("unchecked")
+    public T newInstance(Map<String, String> sqlSession) {
+        final MapperProxy<T> mapperProxy = new MapperProxy<>(sqlSession, mapperInterface);
+        return (T) Proxy.newProxyInstance(mapperInterface.getClassLoader(), new Class[]{mapperInterface}, mapperProxy);
+    }
+}
