@@ -1,5 +1,7 @@
 package org.serendipity.binding;
 
+import org.serendipity.session.SqlSession;
+
 import java.lang.reflect.Proxy;
 import java.util.Map;
 
@@ -17,7 +19,7 @@ public class MapperProxyFactory<T> {
     }
 
     @SuppressWarnings("unchecked")
-    public T newInstance(Map<String, String> sqlSession) {
+    public T newInstance(SqlSession sqlSession) {
         final MapperProxy<T> mapperProxy = new MapperProxy<>(sqlSession, mapperInterface);
         return (T) Proxy.newProxyInstance(mapperInterface.getClassLoader(), new Class[]{mapperInterface}, mapperProxy);
     }
