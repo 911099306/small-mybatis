@@ -1,5 +1,7 @@
 package org.serendipity.test.ApiTest.dao;
 
+import org.serendipity.test.ApiTest.po.User;
+
 /**
  * @author Serendipity
  * @description
@@ -10,4 +12,6 @@ public interface IUserDao {
     String queryUserName(String uId);
 
     Integer queryUserAge(String uId);
+
+    String  queryUserInfoById(String uid);
 }

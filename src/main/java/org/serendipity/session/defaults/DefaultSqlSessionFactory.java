@@ -1,6 +1,7 @@
 package org.serendipity.session.defaults;
 
 import org.serendipity.binding.MapperRegistry;
+import org.serendipity.session.Configuration;
 import org.serendipity.session.SqlSession;
 import org.serendipity.session.SqlSessionFactory;
 
@@ -13,14 +14,14 @@ import java.io.Serializable;
  **/
 public class DefaultSqlSessionFactory implements SqlSessionFactory, Serializable {
 
-    private MapperRegistry mapperRegistry;
+    private Configuration configuration;
 
-    public DefaultSqlSessionFactory(MapperRegistry mapperRegistry) {
-        this.mapperRegistry = mapperRegistry;
+    public DefaultSqlSessionFactory(Configuration configuration) {
+        this.configuration = configuration;
     }
 
     @Override
     public SqlSession openSession() {
-        return new DefaultSqlSession(mapperRegistry);
+        return new DefaultSqlSession(configuration);
     }
 }

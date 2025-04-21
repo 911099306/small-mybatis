@@ -29,6 +29,12 @@ public interface SqlSession {
     <T> T selectOne(String statement, Object parameter);
 
     /**
+     * 获得mybatis的Configuration
+     * @return configuration
+     */
+    Configuration getConfiguration();
+
+    /**
      * 代理模式，得到映射器。使用泛型，返回所需要的类型直接
      *
      * @param type Mapper Interface class 的类型

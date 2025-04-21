@@ -1,5 +1,6 @@
 package org.serendipity.binding;
 
+import org.serendipity.session.Configuration;
 import org.serendipity.session.SqlSession;
 import cn.hutool.core.lang.ClassScanner;
 
@@ -13,6 +14,12 @@ import java.util.Set;
  * @date 2025-04-18 19:10
  **/
 public class MapperRegistry {
+
+    private Configuration configuration;
+
+    public MapperRegistry(Configuration configuration) {
+        this.configuration = configuration;
+    }
 
     /**
      * 将一天假的映射器代理加入到 HashMap
