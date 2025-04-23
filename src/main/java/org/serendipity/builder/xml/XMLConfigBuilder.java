@@ -55,6 +55,11 @@ public class XMLConfigBuilder extends BaseBuilder {
         return configuration;
     }
 
+    /**
+     * 解析Mapper文件的同时，创建MS，并将其插入Configuration
+     * @param mappers
+     * @throws Exception
+     */
     private void mapperElement(Element mappers) throws Exception {
         List<Element> mapperList = mappers.elements("mapper");
         for (Element e : mapperList) {
