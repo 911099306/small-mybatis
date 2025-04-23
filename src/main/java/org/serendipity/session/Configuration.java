@@ -1,7 +1,11 @@
 package org.serendipity.session;
 
 import org.serendipity.binding.MapperRegistry;
+import org.serendipity.datasource.druid.DruidDataSourceFactory;
+import org.serendipity.mapping.Environment;
 import org.serendipity.mapping.MappedStatement;
+import org.serendipity.transaction.jsbc.JdbcTransactionFactory;
+import org.serendipity.type.TypeAliasRegistry;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +18,11 @@ import java.util.Map;
 public class Configuration {
 
     /**
+     * 环境信息
+     */
+    protected Environment environment;
+
+    /**
      * 映射注册器
      */
     protected MapperRegistry mapperRegistry = new MapperRegistry(this);
@@ -23,6 +32,15 @@ public class Configuration {
      */
     protected final Map<String, MappedStatement> mappedStatements = new HashMap<>();
 
+    /**
+     * 类型别名注册机
+     */
+    protected final TypeAliasRegistry typeAliasRegistry = new TypeAliasRegistry();
+
+    public Configuration() {
+        typeAliasRegistry.registerAlias("JDBC", JdbcTransactionFactory.class);
+        typeAliasRegistry.registerAlias("DRUID", DruidDataSourceFactory.class);
+    }
 
     public void addMappers(String packageName) {
         mapperRegistry.addMappers(packageName);
@@ -48,4 +66,15 @@ public class Configuration {
         return mappedStatements.get(id);
     }
 
+    public Environment getEnvironment() {
+        return environment;
+    }
+
+    public void setEnvironment(Environment environment) {
+        this.environment = environment;
+    }
+
+    public TypeAliasRegistry getTypeAliasRegistry() {
+        return typeAliasRegistry;
+    }
 }

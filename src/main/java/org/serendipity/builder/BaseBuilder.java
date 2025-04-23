@@ -1,6 +1,7 @@
 package org.serendipity.builder;
 
 import org.serendipity.session.Configuration;
+import org.serendipity.type.TypeAliasRegistry;
 
 /**
  * @author Serendipity
@@ -10,9 +11,11 @@ import org.serendipity.session.Configuration;
 public abstract class BaseBuilder {
 
     protected final Configuration configuration;
+    protected final TypeAliasRegistry typeAliasRegistry;
 
     protected BaseBuilder(Configuration configuration) {
         this.configuration = configuration;
+        this.typeAliasRegistry = configuration.getTypeAliasRegistry();
     }
 
     public Configuration getConfiguration() {

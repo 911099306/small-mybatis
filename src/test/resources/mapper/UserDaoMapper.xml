@@ -5,8 +5,9 @@
     <select id="queryUserName" resultType="java.lang.String"></select>
     <select id="queryUserAge" resultType="java.lang.Integer"></select>
     <select id="queryUserInfoById" parameterType="java.lang.Long" resultType="org.serendipity.test.ApiTest.po.User">
-        SELECT *
+        SELECT id, userId, userName, userHead
         FROM user
         where id = #{id}
     </select>
+
 </mapper>
